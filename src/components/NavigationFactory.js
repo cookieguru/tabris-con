@@ -1,6 +1,7 @@
 import Schedule from "../pages/Schedule";
 import Tracks from "../pages/Tracks";
 import Map from "../pages/Map";
+import Twitter from "../pages/Twitter";
 import Conference from "../pages/Conference";
 import About from "../pages/About";
 import * as TabFolderNavigation from "./TabFolderNavigation";
@@ -16,7 +17,7 @@ let navigation = {
 export function create(config, remoteService, loginService, feedbackService) {
   navigation[device.platform]
     .createWith(
-      [Schedule, Tracks, Map, config.CONFERENCE_PAGE ? Conference : null, About].filter(val => !!val),
+      [Schedule, Tracks, Map, Twitter, config.CONFERENCE_PAGE ? Conference : null, About].filter(val => !!val),
       ViewDataProviderFactory.create(config, remoteService, loginService, feedbackService),
       loginService,
       feedbackService

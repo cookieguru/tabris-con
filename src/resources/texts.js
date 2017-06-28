@@ -12,6 +12,7 @@ let de = {
   ABOUT_PAGE_OPEN_SOURCE: "Diese App ist Open Source.",
   ABOUT_PAGE_VIEW_IT_ON: "Code anzeigen auf ",
   CONFERENCE_PAGE_TITLE: "Konferenz",
+  TWITTER_PAGE_TITLE: "* auf Twitter",
   NOTICE_PAGE_TITLE: "Benutzung von Icons8 iOS Icons",
   NOTICE_PAGE_NOTICE:
     "Icons8 Icons können nur für Projekte abgeleitet von dem tabris-con Open Source-Projekt verwendet werden:",
@@ -71,6 +72,7 @@ let en = {
   ABOUT_PAGE_OPEN_SOURCE: "This app is open source.",
   ABOUT_PAGE_VIEW_IT_ON: "View it on ",
   CONFERENCE_PAGE_TITLE: "Conference",
+  TWITTER_PAGE_TITLE: "* on Twitter",
   NOTICE_PAGE_TITLE: "Usage of Icon8 iOS icons",
   NOTICE_PAGE_NOTICE:
     "Icon8 icons may only be used for projects derived from the tabris-con open-source project:",

@@ -84,6 +84,7 @@ export default class extends Drawer {
     let pageItems = new Composite({left: 0, top: 0, right: 0});
     new DrawerPageListItem("schedulePage").appendTo(pageItems);
     new DrawerPageListItem("tracksPage").appendTo(pageItems);
+    new DrawerPageListItem("twitterPage").appendTo(pageItems);
     new DrawerPageListItem("mapPage").appendTo(pageItems);
     return pageItems;
   }
