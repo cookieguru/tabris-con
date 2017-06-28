@@ -5,10 +5,6 @@ export default class {
     this._conferenceData = conferenceData;
   }
 
-  extractKeynotes() {
-    return this._conferenceData.keynote.sessions.map(this._getSessionMapper({keynote: true}));
-  }
-
   extractSessions() {
     return this._conferenceData.sessionData.sessions.map(this._getSessionMapper());
   }
@@ -30,7 +26,6 @@ export default class {
       title: googleIOSession.title,
       description: googleIOSession.description,
       room: this._getGoogleIOSessionRoom(googleIOSession),
-      keynote: options && options.keynote || false,
       image: googleIOSession.photoUrl,
       startTimestamp: googleIOSession.startTimestamp,
       endTimestamp: googleIOSession.endTimestamp,

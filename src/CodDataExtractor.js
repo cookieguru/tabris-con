@@ -15,12 +15,8 @@ export default class {
     this._assignCategoryTypes(this._conferenceData);
   }
 
-  extractKeynotes() {
-    return this._getMappedSessions(session => session.session_type === "Keynote", {keynote: true});
-  }
-
   extractSessions() {
-    return this._getMappedSessions(session => session.type !== "schedule_item" && session.session_type !== "Keynote");
+    return this._getMappedSessions(session => session.type !== "schedule_item");
   }
 
   extractBlocks() {
@@ -36,14 +32,13 @@ export default class {
       .value();
   }
 
-  _getMappedSessions(predicate, options) {
+  _getMappedSessions(predicate) {
     return this._conferenceData.scheduledSessions
       .filter(predicate)
       .map(session => ({
         id: session.id,
         nid: session.nid,
         title: session.title,
-        keynote: options && options.keynote || false,
         description: stripHtml(session.abstract),
         room: session.room,
         categoryId: session.categoryId || null,

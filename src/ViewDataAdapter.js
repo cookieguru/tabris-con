@@ -13,15 +13,13 @@ export default class {
   adaptPreviewCategories(categories) {
     let previewCategories = _.cloneDeep(categories);
     previewCategories = _.sortBy(previewCategories, "title");
-    this._moveKeynotesToFirstPosition(previewCategories);
     let result = [this._createLastUpdatedItem()];
     previewCategories.forEach(categoryPreview => {
       this._maybePushTitle(result, categoryPreview);
       result = _.union(result, categoryPreview.sessions.map(
         session => this._adaptSessionListItem(session, "previewSession", {summaryType: "previewText"}))
       );
-      if (categoryPreview.id !== "KEYNOTES" ||
-          categoryPreview.id === "KEYNOTES" && categoryPreview.sessions.length > 1) {
+      if (categoryPreview.sessions.length > 1) {
         result.push({type: "previewCategoriesSpacer"});
       }
       result.push({type: "groupSeparator"});
@@ -69,10 +67,6 @@ export default class {
     return adaptedSession;
   }
 
-  adaptKeynote(keynote) {
-    return this.adaptSession(keynote);
-  }
-
   adaptBlocks(blocks) {
     let typedBlocks = blocks.map(block => Object.assign({}, block, {blockType: block.sessionId ? "session" : "block"}));
     let blocksAndFreeBlocks = new FreeBlockInsertor(this._config).insert(typedBlocks);
@@ -83,20 +77,9 @@ export default class {
       .value();
   }
 
-  _moveKeynotesToFirstPosition(previewCategories) {
-    let keynote = _.find(previewCategories, category => category.id === "KEYNOTES");
-    if (keynote) {
-      previewCategories.splice(previewCategories.indexOf(keynote), 1);
-      previewCategories.unshift(keynote);
-    }
-  }
-
   _maybePushTitle(result, categoryPreview) {
-    if (categoryPreview.id === "KEYNOTES" && categoryPreview.sessions.length <= 1) {
-      return;
-    }
     result.push({
-      type: categoryPreview.id === "KEYNOTES" ? "keynoteTitle" : "title",
+      type: "title",
       id: categoryPreview.id,
       title: categoryPreview.title
     });
@@ -148,9 +131,6 @@ export default class {
         title: datedBlock.title,
         type: "block"
       };
-      if (typeof datedBlock.keynote !== "undefined") {
-        block.keynote = datedBlock.keynote;
-      }
       if ("concurrentSessions" in datedBlock) {
         block.concurrentSessions = datedBlock.concurrentSessions;
       }
@@ -201,7 +181,6 @@ export default class {
     return {
       startTimestamp: session.startTimestamp,
       summary: self._getSummary(session, options.summaryType),
-      keynote: session.keynote,
       type: type,
       id: session.id,
       image: session.image,

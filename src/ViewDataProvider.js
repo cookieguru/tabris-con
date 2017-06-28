@@ -16,13 +16,6 @@ export default class {
     this._config = config;
   }
 
-  getKeynote(keynoteId) {
-    return this._conferenceDataProvider.get().then(data => {
-      let keynote = _.find(data.keynotes, keynote => keynote.id === keynoteId);
-      return this._viewDataAdapter.adaptKeynote(keynote);
-    });
-  }
-
   getPreviewCategories() {
     return this._conferenceDataProvider.get().then(data => {
       return this._viewDataAdapter.adaptPreviewCategories(data.previewCategories);
@@ -45,10 +38,6 @@ export default class {
       let category = _.find(data.categories, category => category.id === categoryId);
       return this._viewDataAdapter.adaptCategory(category);
     });
-  }
-
-  getKeynotes() {
-    return this._conferenceDataProvider.get().then(data => this._viewDataAdapter.adaptKeynotes(data.keynotes));
   }
 
   getSession(sessionId) {

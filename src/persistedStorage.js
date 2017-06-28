@@ -5,7 +5,6 @@ export const ATTENDED_SESSIONS = "attendedSessions";
 export const PREVIEW_CATEGORIES = "previewCategories";
 export const CATEGORIES = "categories";
 export const SESSIONS = "sessions";
-export const KEYNOTES = "keynotes";
 export const BLOCKS = "blocks";
 export const SINGLE_SESSIONS_PRESELECTED = "singleSessionsPreselected";
 
@@ -30,7 +29,6 @@ export function conferenceDataStored() {
     getSessions(),
     getPreviewCategories(),
     getCategories(),
-    getKeynotes(),
     getBlocks()
   ];
   return data.every(data => !!data);
@@ -40,7 +38,6 @@ export function removeConferenceData() {
   removeSessions();
   removePreviewCategories();
   removeCategories();
-  removeKeynotes();
   removeBlocks();
 }
 
@@ -58,17 +55,12 @@ export function setSessions(value, dataType = config.DATA_TYPE) {
   setValue(SESSIONS, value, dataType);
 }
 
-export function setKeynotes(value, dataType = config.DATA_TYPE) {
-  setValue(KEYNOTES, value, dataType);
-}
-
 export function setBlocks(value, dataType = config.DATA_TYPE) {
   setValue(BLOCKS, value, dataType);
 }
 
 export function setConferenceData(conferenceData, dataType = config.DATA_TYPE) {
   setSessions(conferenceData.sessions, dataType);
-  setKeynotes(conferenceData.keynotes, dataType);
   setBlocks(conferenceData.blocks, dataType);
   setPreviewCategories(conferenceData.previewCategories, dataType);
   setCategories(conferenceData.categories, dataType);
@@ -96,10 +88,6 @@ export function getSessions(dataType = config.DATA_TYPE) {
   return getValue(SESSIONS, dataType);
 }
 
-export function getKeynotes(dataType = config.DATA_TYPE) {
-  return getValue(KEYNOTES, dataType);
-}
-
 export function getBlocks(dataType = config.DATA_TYPE) {
   return getValue(BLOCKS, dataType);
 }
@@ -109,7 +97,6 @@ export function getConferenceData(dataType = config.DATA_TYPE) {
     sessions: getSessions(dataType),
     previewCategories: getPreviewCategories(dataType),
     categories: getCategories(dataType),
-    keynotes: getKeynotes(dataType),
     blocks: getBlocks(dataType)
   };
 }
@@ -134,10 +121,6 @@ export function removeCategories() {
 
 export function removeSessions() {
   remove(SESSIONS);
-}
-
-export function removeKeynotes() {
-  remove(KEYNOTES);
 }
 
 export function removeBlocks() {

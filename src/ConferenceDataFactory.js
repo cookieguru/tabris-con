@@ -9,8 +9,7 @@ export function createFromRawData(config, rawData) {
     let dataExtractor = DataExtractorFactory.create(config, rawData);
     data = {
       sessions: dataExtractor.extractSessions(),
-      blocks: dataExtractor.extractBlocks(),
-      keynotes: dataExtractor.extractKeynotes()
+      blocks: dataExtractor.extractBlocks()
     };
   } else {
     data = rawData;
@@ -19,9 +18,8 @@ export function createFromRawData(config, rawData) {
   return {
     sessions: data.sessions,
     blocks: data.blocks,
-    keynotes: data.keynotes,
     previewCategories:
-      CreateTabrisConPreviewCategories.fromSessionsAndKeynotes(data.sessions, data.keynotes),
+      CreateTabrisConPreviewCategories.fromSessions(data.sessions),
     categories: FilterTabrisConCategories.fromSessions(data.sessions)
   };
 }
