@@ -214,6 +214,9 @@ function maybeFocusItem(schedule) {
       let collectionView = tab.children("CollectionView").first();
       let collectionViewItems = collectionView.get("items");
       let index = _.findIndex(collectionViewItems, item => item.sessionId === sessionId);
+      if (index === -1) {
+        return;
+      }
       collectionView.get("items")[index].shouldPop = true;
       if (collectionView.get("bounds").height === 0) { // TODO: workaround for reveal only working after resize on iOS
         collectionView.once("resize", () => {
