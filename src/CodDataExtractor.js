@@ -41,6 +41,7 @@ export default class {
         title: session.title,
         description: stripHtml(session.abstract),
         room: session.room,
+        type: session.type,
         categoryId: session.categoryId || null,
         categoryName: session.categoryName || null,
         startTimestamp: new TimezonedDate(this._timezone, session.start).toJSON(),

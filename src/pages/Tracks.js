@@ -10,7 +10,7 @@ export default class extends Navigatable {
       configuration: {
         id: "tracks",
         title: texts.TRACKS_PAGE_TITLE,
-        image: getImage.forDevicePlatform("tracks_selected") // TODO: selected image initially shown as part of workaround for tabris-ios#841
+        image: getImage.forDevicePlatform("calendar_selected") // TODO: selected image initially shown as part of workaround for tabris-ios#841
       },
       viewDataProvider
     });

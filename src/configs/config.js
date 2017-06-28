@@ -1,9 +1,9 @@
-import conferenceConfiguration from "./eclipseCon2016Config";
+import conferenceConfiguration from "./pnwphp2017Config";
 
 let vendorConfiguration = {
-  VENDOR: "EclipseSource",
-  VENDOR_WEBSITE: "http://eclipsesource.com/",
-  PROJECT_URL: "https://github.com/eclipsesource/tabris-con"
+  VENDOR: "PNWPHP",
+  VENDOR_WEBSITE: "http://pnwphp.com/",
+  PROJECT_URL: "https://github.com/cookieguru/tabris-con"
 };
 
 const CONFIGURATION = Object.freeze(

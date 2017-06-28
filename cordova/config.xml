@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.eclipsesource.tabris.con" version="1.1.0" xmlns="http://www.w3.org/ns/widgets">
-    <name>TabrisCon</name>
+<widget id="com.pnwphp.app" version="0.1.0" android-versionCode="7" ios-CFBundleVersion="0.1.0" xmlns="http://www.w3.org/ns/widgets">
+    <name>PNWPHP</name>
     <description>
-        An exemplary Tabris.js conference app.
+        The official app for the Pacific Northwest PHP Conference
     </description>
-    <author email="tabris@eclipsesource.com" href="https://tabrisjs.com">
-        EclipseSource
+    <author email="apps@tim-bond.com" href="https://tim-bond.com.com">
+        Tim Bond
     </author>
     <access origin="*" />
     <plugin name="cordova-plugin-dialogs" />
@@ -13,15 +13,44 @@
     <plugin name="cordova-plugin-network-information" />
 
     <hook type="before_build" src="scripts/update-versions.js" />
+
     <platform name="ios">
-        <splash src="resources/ios/screen/Default@2x~iphone.png" width="640" height="960"/>
-        <splash src="resources/ios/screen/Default-Portrait~ipad.png" width="768" height="1024"/>
-        <splash src="resources/ios/screen/Default-Portrait@2x~ipad.png" width="1536" height="2048"/>
-        <splash src="resources/ios/screen/Default-Landscape~ipad.png" width="1024" height="768"/>
-        <splash src="resources/ios/screen/Default-Landscape@2x~ipad.png" width="2048" height="1536"/>
-        <splash src="resources/ios/screen/Default-568h@2x~iphone.png" width="640" height="1136"/>
-        <splash src="resources/ios/screen/Default-667h.png" width="750" height="1334"/>
-        <splash src="resources/ios/screen/Default-736h.png" width="1242" height="2208"/>
-        <splash src="resources/ios/screen/Default-Landscape-736h.png" width="2208" height="1242"/>
+        <icon src="resources/ios/Icon-60@3x.png" width="180" height="180"/>
+        <icon src="resources/ios/Icon-60.png" width="60" height="60"/>
+        <icon src="resources/ios/Icon-60@2x.png" width="120" height="120"/>
+        <icon src="resources/ios/Icon-76.png" width="76" height="76"/>
+        <icon src="resources/ios/Icon-76@2x.png" width="152" height="152"/>
+        <icon src="resources/ios/Icon-Spotlight-40.png" width="40" height="40"/>
+        <icon src="resources/ios/Icon-Spotlight-40@2x.png" width="80" height="80"/>
+        <icon src="resources/ios/Icon.png" width="57" height="57"/>
+        <icon src="resources/ios/Icon@2x.png" width="114" height="114"/>
+        <icon src="resources/ios/Icon-72.png" width="72" height="72"/>
+        <icon src="resources/ios/Icon-72@2x.png" width="144" height="144"/>
+        <icon src="resources/ios/Icon-Small.png" width="29" height="29"/>
+        <icon src="resources/ios/Icon-Small@2x.png" width="58" height="58"/>
+        <icon src="resources/ios/Icon-50.png" width="50" height="50"/>
+        <icon src="resources/ios/Icon-50@2x.png" width="100" height="100"/>
+        <icon src="resources/ios/Icon-29@3x.png" width="87" height="87"/>
+        <icon src="resources/ios/iTunesArtwork.png" width="512" height="512"/>
+        <icon src="resources/ios/iTunesArtwork@2x.png" width="1024" height="1024"/>
+
+        <splash src="resources/ios/Default~iphone.png" width="320" height="480"/>
+        <splash src="resources/ios/Default@2x~iphone.png" width="640" height="960"/>
+        <splash src="resources/ios/Default-Portrait~ipad.png" width="768" height="1024"/>
+        <splash src="resources/ios/Default-Portrait@2x~ipad.png" width="1536" height="2048"/>
+        <splash src="resources/ios/Default-Landscape~ipad.png" width="1024" height="768"/>
+        <splash src="resources/ios/Default-Landscape@2x~ipad.png" width="2048" height="1536"/>
+        <splash src="resources/ios/Default-568h@2x~iphone.png" width="640" height="1136"/>
+        <splash src="resources/ios/Default-667h.png" width="750" height="1334"/>
+        <splash src="resources/ios/Default-736h.png" width="1242" height="2208"/>
+        <splash src="resources/ios/Default-Landscape-736h.png" width="2208" height="1242"/>
+    </platform>
+
+    <platform name="android">
+        <icon src="resources/android/drawable-mdpi/ic_launcher.png" density="mdpi"/>
+        <icon src="resources/android/drawable-hdpi/ic_launcher.png" density="hdpi"/>
+        <icon src="resources/android/drawable-xhdpi/ic_launcher.png" density="xhdpi"/>
+        <icon src="resources/android/drawable-xxhdpi/ic_launcher.png" density="xxhdpi"/>
+        <icon src="resources/android/drawable-xxxhdpi/ic_launcher.png" density="xxxhdpi"/>
     </platform>
 </widget>

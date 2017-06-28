@@ -121,7 +121,7 @@ export default class {
   _getDatedBlockAdapter() {
     return (datedBlock) => {
       let block = {
-        image: this._getImageForBlockTitle(datedBlock.title),
+        image: this._getImageForBlock(datedBlock),
         summary: this._getBlockSummary(datedBlock),
         startTime: new TimezonedDate(this._timezone, datedBlock.startTimestamp).format("LT"),
         startTimestamp: datedBlock.startTimestamp,
@@ -183,7 +183,7 @@ export default class {
       summary: self._getSummary(session, options.summaryType),
       type: type,
       id: session.id,
-      image: session.image,
+      image: session.image ? session.image : this._getImageForBlock(session),
       title: session.title,
       categoryName: session.categoryName
     };
@@ -207,10 +207,22 @@ export default class {
     ].join(" / ");
   }
 
-  _getImageForBlockTitle(title) {
-    let patternIconMap = this._config.SCHEDULE_PATTERN_ICON_MAP;
+  _getImageForBlock(block) {
+    let patternIconMap = this._config.SCHEDULE_TYPE_ICON_MAP;
+    let icon;
+    if (block.type) {
+      icon = _.find(patternIconMap,(icon, pattern) => {
+        if (block.type.match(pattern)) {
+          return icon;
+        }
+      });
+    }
+    if (icon) {
+      return icon;
+    }
+    patternIconMap = this._config.SCHEDULE_PATTERN_ICON_MAP;
     return _.find(patternIconMap,(icon, pattern) => {
-      if (title.match(pattern)) {
+      if (block.title.match(pattern)) {
         return icon;
       }
     });

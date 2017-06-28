@@ -1,7 +1,9 @@
 {
-  "title": "Tabris Con",
-  "description": "A template for conference apps built with Tabris.js",
+  "title": "PNWPHP",
+  "description": "The official app for the Pacific Northwest PHP Conference",
   "main": "dist/main.js",
+  "repository": "https://github.com/cookieguru/tabris-con/",
+  "license": "UNLICENSED",
   "scripts": {
     "jshint": "jshint src test",
     "jscs": "jscs src test",
