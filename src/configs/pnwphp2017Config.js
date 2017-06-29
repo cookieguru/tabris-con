@@ -6,7 +6,7 @@ export default {
     LOGOUT: null,
     CSRF_TOKEN: null,
     EVALUATIONS: null,
-    SESSIONS: "https://raw.githubusercontent.com/cookieguru/tabris-con/master/json/pnwphp/scheduled_sessions.json"
+    SESSIONS: "https://raw.githubusercontent.com/cookieguru/tabris-con/pnwphp/json/pnwphp/scheduled_sessions.json"
   },
   SUPPORTS_FEEDBACK: false,
   SESSIONS_HAVE_IMAGES: false,
