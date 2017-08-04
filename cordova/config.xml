@@ -11,6 +11,7 @@
     <plugin name="cordova-plugin-dialogs" />
     <plugin name="cordova-plugin-inappbrowser" />
     <plugin name="cordova-plugin-network-information" />
+    <plugin name="cordova-plugin-globalization" version="^1.0.7" />
 
     <hook type="before_build" src="scripts/update-versions.js" />
 
