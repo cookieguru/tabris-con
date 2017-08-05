@@ -1,4 +1,4 @@
-import sanitizeHtml from "sanitize-html";
+import stripHTML from "./stripHTML";
 import _ from "lodash";
 import squash from "./squash";
 import TimezonedDate from "./TimezonedDate";
@@ -39,7 +39,7 @@ export default class {
         id: session.id,
         nid: session.nid,
         title: session.title,
-        description: stripHtml(session.abstract),
+        description: stripHTML(session.abstract),
         room: session.room,
         type: session.type,
         categoryId: session.categoryId || null,
@@ -48,7 +48,7 @@ export default class {
         endTimestamp: new TimezonedDate(this._timezone, session.end).toJSON(),
         speakers: session.presenter.map(speaker => ({
           name: speaker.fullname,
-          bio: stripHtml(speaker.bio),
+          bio: stripHTML(speaker.bio),
           company: speaker.organization,
           twitter: speaker.twitter,
           image: speaker.picture
@@ -79,8 +79,4 @@ export default class {
       })
       .value();
   }
-}
-
-function stripHtml(hypertext) {
-  return sanitizeHtml(hypertext, {allowedTags: [], allowedAttributes: []});
 }

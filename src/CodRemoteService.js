@@ -1,4 +1,4 @@
-import sanitizeHtml from "sanitize-html";
+import stripHTML from "./stripHTML";
 import _ from "lodash";
 import * as alertDialog from "./components/alert";
 import isFeedbackTime from "./isFeedbackTime";
@@ -17,7 +17,7 @@ export default class {
       .catch(log)
       .then(response => {
         if (response instanceof Array) {
-          let error = sanitizeHtml(response[0], {allowedTags: [], allowedAttributes: []});
+          let error = stripHTML(response[0]);
           return Promise.reject(error);
         }
         return response;
