@@ -114,8 +114,8 @@ export function get({viewDataProvider, loginService, feedbackService}) {
         let date2 = new TimezonedDate(config.CONFERENCE_TIMEZONE, item.endTimestamp);
         viewDataProvider.getSessionsInTimeframe(date1.toJSON(), date2.toJSON())
           .then(sessions => {
-            let from = date1.format("LT");
-            let to = date2.format("LT");
+            let from = date1.formatTime();
+            let to = date2.formatTime();
             page.set("data", {title: from + " - " + to, items: sessions});
           });
       }

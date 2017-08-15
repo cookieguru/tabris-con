@@ -6,7 +6,7 @@ import appConfig from "../configs/config";
 import Link from "../components/Link";
 import {ImageView, TextView, Composite} from "tabris";
 import texts from "../resources/texts";
-import moment from "moment-timezone";
+import TimezonedDate from "../TimezonedDate";
 
 var config = appConfig.CONFERENCE_PAGE;
 
@@ -78,5 +78,5 @@ function createSocialLink({service, title, url, tag}) {
 }
 
 function day(day) {
-  return moment.tz(day, "DD.MM.YYYY", appConfig.CONFERENCE_TIMEZONE).format("ll");
+  return new TimezonedDate(appConfig.CONFERENCE_TIMEZONE, day, "DD.MM.YYYY").formatDate();
 }

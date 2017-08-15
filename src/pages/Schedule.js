@@ -9,7 +9,7 @@ import _ from "lodash";
 import texts from "../resources/texts";
 import sizes from "../resources/sizes";
 import colors from "../resources/colors";
-import moment from "moment-timezone";
+import TimezonedDate from "../TimezonedDate";
 
 export default class extends Navigatable {
   constructor({viewDataProvider}) {
@@ -76,7 +76,8 @@ export default class extends Navigatable {
 
     this.on("change:data", (widget, blocks) => {
       let lastUpdated = localStorage.getItem("lastUpdated");
-      this.find("#lastUpdated").set("text", `${texts.LAST_UPDATED} ${moment(lastUpdated).format("ll LT")}`);
+      let date = new TimezonedDate(null, lastUpdated);
+      this.find("#lastUpdated").set("text", `${texts.LAST_UPDATED} ${date.formatDateAndTime()}`);
       blocks.forEach(blockObject => {
         let collectionView = this.find("#" + blockObject.day);
         collectionView.set("items", blockObject.blocks);

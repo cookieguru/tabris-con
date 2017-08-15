@@ -21,8 +21,8 @@ export default class extends Composite {
               this._createOtherSessionsLink()
                 .on("tap", () => {
                   let sessionsPage = new SessionsPage(viewDataProvider, loginService).open();
-                  let from = date1.format("LT");
-                  let to = date2.format("LT");
+                  let from = date1.formatTime();
+                  let to = date2.formatTime();
                   sessionsPage.set("data", {title: from + " - " + to, items: otherSessions});
                 })
                 .appendTo(this);

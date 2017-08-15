@@ -1,6 +1,6 @@
 import sizes from "../../resources/sizes";
 import {TextView} from "tabris";
-import moment from "moment-timezone";
+import TimezonedDate from "../../TimezonedDate";
 import texts from "../../resources/texts";
 import {select} from "../../helpers/platform";
 import colors from "../../resources/colors";
@@ -21,7 +21,8 @@ export function get() {
         default: "initial"
       }));
       cell.on("change:item", (widget, item) => {
-        time.set("text", `${texts.LAST_UPDATED} ${moment(item.value).format("ll LT")}`);
+        let date = new TimezonedDate(null, item.value);
+        time.set("text", `${texts.LAST_UPDATED} ${date.formatDateAndTime()}`);
       });
     },
     select: () => {}

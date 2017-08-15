@@ -36,11 +36,8 @@ export default class {
   }
 
   adaptSession(session) {
-    let startDateString = [
-      new TimezonedDate(this._timezone, session.startTimestamp).format("ll"),
-      new TimezonedDate(this._timezone, session.startTimestamp).format("LT")
-    ].join(", ");
-    let endTimeString = new TimezonedDate(this._timezone, session.endTimestamp).format("LT");
+    let startDateString = new TimezonedDate(this._timezone, session.startTimestamp).formatDateAndTime();
+    let endTimeString = new TimezonedDate(this._timezone, session.endTimestamp).formatTime();
     let adaptedSession = {
       id: session.id,
       summary: startDateString + " - " + endTimeString + (session.room ? " in " + session.room : ""),
@@ -73,7 +70,7 @@ export default class {
     let blocksAndFreeBlocks = new FreeBlockInsertor(this._config).insert(typedBlocks);
     return _(blocksAndFreeBlocks)
       .sortBy("startTimestamp")
-      .groupBy(block => new TimezonedDate(this._timezone, block.startTimestamp).format("DD MMM"))
+      .groupBy(block => new TimezonedDate(this._timezone, block.startTimestamp).formatDate())
       .map(datedBlocks => this._mapDatedBlock(datedBlocks))
       .value();
   }
@@ -108,7 +105,7 @@ export default class {
   _mapDatedBlock(datedBlocks) {
     let separators = this._createSeparators(datedBlocks.length, "smallSeparator");
     return {
-      day: new TimezonedDate(this._timezone, datedBlocks[0].startTimestamp).format("DD MMM"),
+      day: new TimezonedDate(this._timezone, datedBlocks[0].startTimestamp).formatDate(),
       blocks: _(datedBlocks)
         .sortBy("startTimestamp")
         .map(this._getDatedBlockAdapter())
@@ -124,7 +121,7 @@ export default class {
       let block = {
         image: this._getImageForBlock(datedBlock),
         summary: this._getBlockSummary(datedBlock),
-        startTime: new TimezonedDate(this._timezone, datedBlock.startTimestamp).format("LT"),
+        startTime: new TimezonedDate(this._timezone, datedBlock.startTimestamp).formatTime(),
         startTimestamp: datedBlock.startTimestamp,
         endTimestamp: datedBlock.endTimestamp,
         feedbackIndicatorState: this._getFeedbackIndicatorState(datedBlock),
@@ -150,8 +147,8 @@ export default class {
     if (datedBlock.endTimestamp) {
       summaryArray.push(
         [
-          new TimezonedDate(this._timezone, datedBlock.startTimestamp).format("LT"),
-          new TimezonedDate(this._timezone, datedBlock.endTimestamp).format("LT")
+          new TimezonedDate(this._timezone, datedBlock.startTimestamp).formatTime(),
+          new TimezonedDate(this._timezone, datedBlock.endTimestamp).formatTime()
         ].join(" - ")
       );
     }
@@ -193,19 +190,13 @@ export default class {
   _getSummary(session, summaryType) {
     let typeData = {
       timeframe: [
-        new TimezonedDate(this._timezone, session.startTimestamp).format("D MMM"), this._getTimeframeTimePart(session)
+        new TimezonedDate(this._timezone, session.startTimestamp).formatDateAndTime(),
+        new TimezonedDate(this._timezone, session.endTimestamp).formatTime()
       ].join(" - "),
       previewText: session.description,
       category: session.categoryName
     };
     return typeData[summaryType];
-  }
-
-  _getTimeframeTimePart(session) {
-    return [
-      new TimezonedDate(this._timezone, session.startTimestamp).format("LT"),
-      new TimezonedDate(this._timezone, session.endTimestamp).format("LT")
-    ].join(" / ");
   }
 
   _getImageForBlock(block) {
